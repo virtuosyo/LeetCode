@@ -72,3 +72,4 @@ var isValid = function (s) {
     return !leftArr.length //防止全部为左括号
 };
 console.log(isValid("]"));
+console.log(isValid("{[]}"));
