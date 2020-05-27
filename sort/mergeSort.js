@@ -19,6 +19,14 @@ const mergeSort = array => {
 }
 
 
+const merge = (left, right) => {
+    let [i, j] = [0, 0]
+    let result = []
+    while (i < left.length && j < right.length) {
+        result.push(left[i] < right[j] ? left[i++] : right[j++])
+    }
+    return result.concat(i < left.length ? left[i] : right[j])
+}
 
 const mergeSort = arr => {
     if (arr.length > 1) {
@@ -28,14 +36,6 @@ const mergeSort = arr => {
         arr = merge(left, right)
     }
     return arr
-}
-const merge = (left, right) => {
-    let [i, j] = [0, 0]
-    let result = []
-    while (i < left.length && j < right.length) {
-        result.push(left[i] < right[j] ? left[i++] : right[j++])
-    }
-    return result.concat(i < left.length ? left[i] : right[j])
 }
 
 console.log(mergeSort(arr));
