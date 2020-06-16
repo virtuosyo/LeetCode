@@ -21,3 +21,19 @@ var inorderTraversal = function (root) {
     inOrderTraverseNode(root)
     return arr
 };
+
+var inorderTraversal = function (root) {
+    const res = []
+    const stack = []
+    let p = root
+    while (stack.length || p) {
+        while (p) {
+            stack.push(p)
+            p = p.left
+        }
+        const n = stack.pop()
+        res.push(n.val)
+        p = n.right
+    }
+    return res
+};
