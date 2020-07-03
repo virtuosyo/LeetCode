@@ -18,4 +18,65 @@ var findKthLargest = function (nums, k) {
     return nums[nums.length - k];
 };
 
-console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2))
+// 法三 最小堆
+class MinHeap {
+    constructor() {
+        this.heap = []
+    }
+    insert(value) {
+        this.heap.push(value)
+        this.shiftUp(this.heap.length - 1)
+    }
+    getParentIndex(i) {
+        return (i - 1) >> 1
+    }
+    getLeftIndex(i) {
+        return i * 2 + 1
+    }
+    getRightIndex(i) {
+        return i * 2 + 2
+    }
+    shiftUp(index) {
+        if (index === 0) return
+        const parentIndex = this.getParentIndex(index)
+        if (this.heap[parentIndex] > this.heap[index]) {
+            [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]]
+            this.shiftUp(parentIndex)
+        }
+    }
+    shiftDown(index) {
+        const leftIndex = this.getLeftIndex(index)
+        const rightIndex = this.getRightIndex(index)
+        if (this.heap[leftIndex] < this.heap[index]) {
+            [this.heap[leftIndex], this.heap[index]] = [this.heap[index], this.heap[leftIndex]]
+            this.shiftDown(leftIndex)
+        }
+        if (this.heap[rightIndex] < this.heap[index]) {
+            [this.heap[rightIndex], this.heap[index]] = [this.heap[index], this.heap[rightIndex]]
+            this.shiftDown(rightIndex)
+        }
+    }
+    pop() {
+        this.heap[0] = this.heap.pop()
+        this.shiftDown(0)
+    }
+    peak() {
+        return this.heap[0]
+    }
+    size() {
+        return this.heap.length
+    }
+}
+
+var findKthLargest = function (nums, k) {
+    const h = new MinHeap()
+    nums.forEach(item => {
+        h.insert(item)
+        if (h.size() > k) {
+            h.pop()
+        }
+    })
+    return h.peak()
+
+};
+
