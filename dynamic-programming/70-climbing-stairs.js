@@ -13,6 +13,7 @@ var climbStairs = function (n) {
     return dp[n]
 };
 
+// 不使用数组
 var climbStairs = function (n) {
     if (n < 2) {
         return 1
