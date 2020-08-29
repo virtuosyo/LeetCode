@@ -21,5 +21,7 @@ const quickSort = arr => {
     }
     let less = arr.slice(1).filter(item => item <= arr[0])
     let greater = arr.slice(1).filter(item => item > arr[0])
-    return quickSort(less).concat(arr[0], quickSort(greater))
+    return [...quickSort(less), arr[0], ...quickSort(greater)]
 }
+
+console.log(quickSort(arr));
