@@ -43,3 +43,26 @@ var isValidBST = function (root) {
     }
     return true
 };
+
+var isValidBST = function (root) {
+    const res = []
+    const stack = []
+    let p = root
+    while (stack.length || p) {
+        while (p) {
+            stack.push(p)
+            p = p.left
+        }
+        const node = stack.pop()
+        if (res.length) {
+            if (node.val <= res[res.length - 1]) {
+                return false
+            }
+            res.push(node.val)
+        } else {
+            res.push(node.val)
+        }
+        p = node.right
+    }
+    return true
+}
