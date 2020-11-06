@@ -37,7 +37,7 @@ var isValid = function (s) {
     return stack.length === 0 && flag ? true : false
 };
 
-// -------------------------------------
+// ---------------------------------------
 
 // 链接：https://leetcode-cn.com/problems/valid-parentheses/solution/javascript-you-xiao-de-gua-hao-by-rhinoc/
 // 法二：思路舒服 性能不高 
